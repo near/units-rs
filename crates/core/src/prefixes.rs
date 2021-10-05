@@ -1,25 +1,4 @@
-pub static MAGNITUDES: [i8; 20] = [
-   24,
-   21,
-   18,
-   15,
-   12,
-   9,
-   6,
-   3,
-   2,
-   1,
-   -1,
-   -2,
-   -3,
-   -6,
-   -9,
-   -12,
-   -15,
-   -18,
-   -21,
-   -24
-];
+
 
 pub const YOTTA: &str = r"yotta|Y$";
 pub const ZETTA: &str = r"zetta|Z$";
@@ -46,7 +25,9 @@ pub const PATTERNS: [&str; 20] = [
     YOTTA, ZETTA, EXA, PETA, TERRA, GIGA, MEGA, KILO, HECTO, DEKA, DECI, CENTI, MILLI, MICRO, NANO,
     PICO, FEMTO, ATTO, ZEPTO, YOCTO,
 ];
-
+pub static MAGNITUDES: [i8; 20] = [
+    24, 21, 18, 15, 12, 9, 6, 3, 2, 1, -1, -2, -3, -6, -9, -12, -15, -18, -21, -24,
+];
 
 pub fn from_magnitude(magnitude: i8) -> Option<&'static str> {
     match magnitude {

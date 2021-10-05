@@ -1,15 +1,19 @@
 use std::num::ParseIntError;
 use regex::Regex;
 
-pub fn parse(from: &str) -> Option<String> {
+pub fn parse_str(from: &str) -> Option<String> {
     let gas = Regex::new(r"(?:gas)\s*").unwrap().replace_all(from, "").to_string();
     return crate::util::parse(&gas, 0);
 }
 
 
-pub fn parse_u128(input: &str) -> Result<u128, ParseIntError>  {
-  let int_str = parse(input).expect("Cannot parse string");
+pub fn parse(input: &str) -> Result<u128, ParseIntError>  {
+  let int_str = parse_str(input).expect("Cannot parse string");
   u128::from_str_radix(&int_str, 10)
+}
+
+pub fn to_human(input: u128) -> String {
+  crate::util::to_human(input, "gas", 12, 12 )
 }
 
 #[cfg(test)]
@@ -28,9 +32,10 @@ mod tests {
     #[test]
     fn it_works() {
         for line in &DATA {
-            let parsed = parse_u128(line[0]).unwrap();
+            let parsed = parse(line[0]).unwrap();
             let expected = line[1];
             assert_eq!(parsed.to_string(), expected);
+            assert_eq!(to_human(parsed), line[2]);
         }
     }
 }

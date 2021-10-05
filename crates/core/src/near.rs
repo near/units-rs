@@ -7,14 +7,16 @@ pub fn parse_str(input: &str) -> Option<String> {
         .unwrap()
         .replace_all(input, "")
         .to_string();
-    println!("near initial parse {}", near);
     return crate::util::parse(&near, 24);
 }
 
 pub fn parse(input: &str) -> Result<u128, ParseIntError>  {
     let int_str = parse_str(input).expect("Cannot parse string");
-    println!("{}", int_str);
     u128::from_str_radix(&int_str, 10)
+}
+
+pub fn to_human(input: u128) -> String {
+  crate::util::to_human(input, "N", 24, 0)
 }
 
 #[cfg(test)]
@@ -63,6 +65,7 @@ mod tests {
             let parsed = parse(line[0]).unwrap();
             let expected = line[1];
             assert_eq!(parsed.to_string(), expected);
+            assert_eq!(to_human(parsed), line[2]);
         }
     }
 }
