@@ -11,8 +11,9 @@ pub fn parse_str(input: &str) -> Option<String> {
 }
 
 pub fn parse(input: &str) -> Result<u128, ParseIntError> {
-    let int_str = parse_str(input).expect("Cannot parse string");
-    u128::from_str_radix(&int_str, 10)
+    parse_str(input)
+        .expect("Cannot parse string")
+        .parse::<u128>()
 }
 
 pub fn to_human(input: u128) -> String {
