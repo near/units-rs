@@ -1,6 +1,6 @@
-use crate::prefixes::{MAGNITUDES, PATTERNS, from_magnitude};
-use regex::{Regex, RegexSet};
+use crate::prefixes::{from_magnitude, MAGNITUDES, PATTERNS};
 use num_format::{Locale, ToFormattedString};
+use regex::{Regex, RegexSet};
 
 pub fn get_match(s: &str) -> Option<usize> {
     let set = RegexSet::new(&PATTERNS).unwrap();
@@ -8,7 +8,7 @@ pub fn get_match(s: &str) -> Option<usize> {
     if matches.len() != 1 {
         return None;
     }
-    matches.get(0).map(|x| *x )
+    matches.get(0).map(|x| *x)
 }
 
 pub fn get_magnitude(s: &str) -> i8 {
@@ -50,22 +50,26 @@ pub fn parse(with_units: &str, magnitude: i8) -> Option<String> {
 }
 
 pub fn to_human(num: u128, base_unit: &str, maginitude: i8, adjust_magnitude: i8) -> String {
-  let nomination = u128::pow(10, maginitude as u32);
-  let quotient = num / nomination;
-  let remainder = num % nomination;
+    let nomination = u128::pow(10, maginitude as u32);
+    let quotient = num / nomination;
+    let remainder = num % nomination;
 
-  if quotient > 0 {
-    let int = quotient.to_formatted_string(&Locale::en);
-    let remainder_str = remainder.to_string();
-    let fraction = if remainder == 0 { "".to_string() } else {
-      let pad = (maginitude as isize - remainder_str.len() as isize).max(0) as usize;
-      format!(".{}{}", "0".repeat(pad), remainder_str).trim_end_matches("0").to_string()
-    };
-    let prefix = from_magnitude(adjust_magnitude).unwrap();
-    return format!("{}{} {}{}", int, fraction, prefix, base_unit)
-  }
+    if quotient > 0 {
+        let int = quotient.to_formatted_string(&Locale::en);
+        let remainder_str = remainder.to_string();
+        let fraction = if remainder == 0 {
+            "".to_string()
+        } else {
+            let pad = (maginitude as isize - remainder_str.len() as isize).max(0) as usize;
+            format!(".{}{}", "0".repeat(pad), remainder_str)
+                .trim_end_matches("0")
+                .to_string()
+        };
+        let prefix = from_magnitude(adjust_magnitude).unwrap();
+        return format!("{}{} {}{}", int, fraction, prefix, base_unit);
+    }
 
-  to_human(num, base_unit, maginitude - 3, adjust_magnitude - 3)
+    to_human(num, base_unit, maginitude - 3, adjust_magnitude - 3)
 }
 
 #[cfg(test)]

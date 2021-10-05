@@ -1,5 +1,3 @@
-
-
 pub const YOTTA: &str = r"yotta|Y$";
 pub const ZETTA: &str = r"zetta|Z$";
 pub const EXA: &str = r"exa|E$";

@@ -1,4 +1,4 @@
-use std::{num::ParseIntError};
+use std::num::ParseIntError;
 
 use regex::Regex;
 
@@ -10,13 +10,13 @@ pub fn parse_str(input: &str) -> Option<String> {
     return crate::util::parse(&near, 24);
 }
 
-pub fn parse(input: &str) -> Result<u128, ParseIntError>  {
+pub fn parse(input: &str) -> Result<u128, ParseIntError> {
     let int_str = parse_str(input).expect("Cannot parse string");
     u128::from_str_radix(&int_str, 10)
 }
 
 pub fn to_human(input: u128) -> String {
-  crate::util::to_human(input, "N", 24, 0)
+    crate::util::to_human(input, "N", 24, 0)
 }
 
 #[cfg(test)]
