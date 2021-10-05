@@ -1,0 +1,39 @@
+name: Test Core
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  test:
+    runs-on: ${{ matrix.platform }}
+    name: "${{ matrix.platform }} ${{ matrix.toolchain }}"
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest]
+        toolchain: [stable]
+    steps:
+      - uses: actions/checkout@v2
+      - name: "${{ matrix.toolchain }} with rustfmt"
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: ${{ matrix.toolchain }}
+      - uses: Swatinem/rust-cache@v1
+      - name: Test
+        run: cargo test
+  lint:
+    name: Clippy and fmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with: 
+          profile: minimal
+          toolchain: stable
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v1
+      - name: Test Format
+        run: cargo fmt -- --check
+      - run: cargo clippy --tests -- -Dclippy::all
