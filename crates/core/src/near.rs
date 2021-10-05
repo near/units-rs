@@ -7,7 +7,7 @@ pub fn parse_str(input: &str) -> Option<String> {
         .unwrap()
         .replace_all(input, "")
         .to_string();
-    return crate::util::parse(&near, 24);
+    crate::util::parse(&near, 24)
 }
 
 pub fn parse(input: &str) -> Result<u128, ParseIntError> {

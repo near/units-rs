@@ -6,7 +6,7 @@ pub fn parse_str(from: &str) -> Option<String> {
         .unwrap()
         .replace_all(from, "")
         .to_string();
-    return crate::util::parse(&gas, 0);
+    crate::util::parse(&gas, 0)
 }
 
 pub fn parse(input: &str) -> Result<u128, ParseIntError> {

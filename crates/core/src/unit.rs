@@ -5,5 +5,5 @@ pub trait ParseableUnit {
 
     fn parse_u128(input: &str) -> Result<u128, ParseIntError>;
 
-    fn to_human(input: &u128) -> String;
+    fn human(input: &u128) -> String;
 }

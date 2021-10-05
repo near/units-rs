@@ -8,7 +8,7 @@ pub fn get_match(s: &str) -> Option<usize> {
     if matches.len() != 1 {
         return None;
     }
-    matches.get(0).map(|x| *x)
+    matches.get(0).copied()
 }
 
 pub fn get_magnitude(s: &str) -> i8 {
@@ -25,7 +25,7 @@ pub fn clean(x: &str) -> String {
 pub fn parse(with_units: &str, magnitude: i8) -> Option<String> {
     let maginitude = magnitude + get_magnitude(with_units);
     let num_str = clean(with_units);
-    let mut parts = num_str.split(".");
+    let mut parts = num_str.split('.');
     let whole_part = parts.next().unwrap();
     let fraction_part = parts.next().unwrap_or("");
 
@@ -34,7 +34,7 @@ pub fn parse(with_units: &str, magnitude: i8) -> Option<String> {
     if parts.next().is_some() {
         return None;
     }
-    if maginitude == 0 && fraction_part != "" {
+    if maginitude == 0 && !fraction_part.is_empty() {
         return None;
     }
     if fraction_part.len() as i8 > maginitude {
@@ -62,7 +62,7 @@ pub fn to_human(num: u128, base_unit: &str, maginitude: i8, adjust_magnitude: i8
         } else {
             let pad = (maginitude as isize - remainder_str.len() as isize).max(0) as usize;
             format!(".{}{}", "0".repeat(pad), remainder_str)
-                .trim_end_matches("0")
+                .trim_end_matches('0')
                 .to_string()
         };
         let prefix = from_magnitude(adjust_magnitude).unwrap();
