@@ -3,7 +3,7 @@ use regex::{Regex, RegexSet};
 
 pub fn get_match(s: &str) -> Option<&str> {
     let set = RegexSet::new(&PATTERNS).unwrap();
-    let matches: Vec<usize> = set.matches(s).into_iter().collect();
+    let matches: Vec<usize> = set.matches(s.trim_end()).into_iter().collect();
     if matches.len() != 1 {
         return None;
     }
