@@ -1,13 +1,13 @@
 use crate::*;
 use regex::{Regex, RegexSet};
 
-pub fn get_match(s: &str) -> Option<&str> {
+pub fn get_match(s: &str) -> Option<usize> {
     let set = RegexSet::new(&PATTERNS).unwrap();
     let matches: Vec<usize> = set.matches(s.trim_end()).into_iter().collect();
     if matches.len() != 1 {
         return None;
     }
-    matches.get(0).map(|i| PATTERNS[*i])
+    matches.get(0).map(|x| *x )
 }
 
 pub fn get_magnitude(s: &str) -> i8 {
@@ -55,9 +55,9 @@ mod tests {
     use super::*;
     #[test]
     fn it_works() {
-        assert_eq!(get_match("y").unwrap(), YOCTO);
+        assert_eq!(get_match("y").unwrap(), 19);
         assert_eq!(get_magnitude("y"), -24);
-        assert_eq!(get_match("yocto").unwrap(), YOCTO);
+        assert_eq!(get_match("yocto").unwrap(), 19);
         assert_eq!(get_magnitude("yocto"), -24);
         assert_eq!(get_magnitude("1yocto"), -24);
     }

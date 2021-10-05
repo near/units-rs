@@ -1,25 +1,25 @@
-pub static MAGNITUDES: phf::Map<&'static str, i8> = phf::phf_map! {
-  r"yotta|Y$" => 24,
-  r"zetta|Z$" => 21,
-  r"exa|E$" => 18,
-  r"peta|P$" => 15,
-  r"terra|T$" => 12,
-  r"giga|G$" => 9,
-  r"mega|M$" => 6,
-  r"kilo|k$" => 3,
-  r"hecto|h$" => 2,
-  r"deka|da$" => 1,
-  r"deci|d$" => -1,
-  r"centi|c$" => -2,
-  r"milli|m$" => -3,
-  r"micro|μ$" => -6,
-  r"nano|n$" => -9,
-  r"pico|p$" => -12,
-  r"femto|f$" => -15,
-  r"atto|a$" => -18,
-  r"zepto|z$" => -21,
-  r"yocto|y$" => -24
-};
+pub static MAGNITUDES: [i8; 20] = [
+   24,
+   21,
+   18,
+   15,
+   12,
+   9,
+   6,
+   3,
+   2,
+   1,
+   -1,
+   -2,
+   -3,
+   -6,
+   -9,
+   -12,
+   -15,
+   -18,
+   -21,
+   -24
+];
 
 pub const YOTTA: &str = r"yotta|Y$";
 pub const ZETTA: &str = r"zetta|Z$";
@@ -47,6 +47,7 @@ pub const PATTERNS: [&str; 20] = [
     PICO, FEMTO, ATTO, ZEPTO, YOCTO,
 ];
 
+
 pub fn from_magnitude(magnitude: i8) -> Option<&'static str> {
     match magnitude {
         24 => Some("Y"),
@@ -67,15 +68,5 @@ pub fn from_magnitude(magnitude: i8) -> Option<&'static str> {
         -21 => Some("z"),
         -24 => Some("y"),
         _ => None,
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn lookup_works() {
-        assert_eq!(MAGNITUDES[YOCTO], -24);
-        assert_eq!(MAGNITUDES[YOTTA], 24)
     }
 }
