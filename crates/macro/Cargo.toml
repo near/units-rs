@@ -19,4 +19,4 @@ proc-macro = true
 proc-macro2 = "1.0"
 syn = {version = "=1.0.78", features = ["full", "fold", "extra-traits"] }
 quote = "1.0"
-near-units-core = { path = "../core"}
+near-units-core = "0.1.0"
