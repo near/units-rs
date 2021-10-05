@@ -3,6 +3,12 @@ name = "near-units-macro"
 version = "0.1.0"
 authors = ["Willem Wyndham <wyndham@cs.unc.edu>"]
 edition = "2018"
+license = "GPL-3.0"
+categories = ["near"]
+repository = "https://github.com/near/units-rs"
+description = """
+Macro for parsing strings literals of NEAR units.
+"""
 
 [lib]
 proc-macro = true

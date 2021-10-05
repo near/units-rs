@@ -3,6 +3,12 @@ name = "near-units-core"
 version = "0.1.0"
 authors = ["Near Inc <team@near.org>"]
 edition = "2018"
+license = "GPL-3.0"
+categories = ["near"]
+repository = "https://github.com/near/units-rs"
+description = """
+Core Rust library for parsing and displaying NEAR units.
+"""
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
