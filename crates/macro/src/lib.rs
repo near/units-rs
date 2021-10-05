@@ -5,19 +5,6 @@ use proc_macro2::Span;
 use quote::quote;
 use syn::{ExprLit, Lit};
 
-// pub fn parse(item: TokenStream) -> TokenStream {
-//     match syn::parse::<ExprLit>(item) {
-//         Ok(ExprLit { lit: Lit::Str(str), .. }) => TokenStream::from(quote!{#str}),
-//         _ => TokenStream::from(
-//           syn::Error::new(
-//               Span::call_site(),
-//               "parse can only be used with string literals",
-//           )
-//           .to_compile_error(),
-//       )
-//     }
-// }
-
 #[proc_macro]
 pub fn parse_near(item: TokenStream) -> TokenStream {
     match syn::parse::<ExprLit>(item) {
