@@ -2,7 +2,7 @@ use std::num::ParseIntError;
 
 use regex::Regex;
 
-pub fn parse_str(input: &str) -> Option<String> {
+fn parse_str(input: &str) -> Option<String> {
     let near = Regex::new(r"(?i:n(?i:ear)?)\s*$")
         .unwrap()
         .replace_all(input, "")

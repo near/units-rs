@@ -14,5 +14,5 @@ Rust library for parsing and displaying NEAR units.
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-near-units-core = "0.1.0"
-near-units-macro = "0.1.0"
+near-units-core = { path = "../core", version = "0.1.0"}
+near-units-macro = { path = "../macro", version = "0.1.0"}
