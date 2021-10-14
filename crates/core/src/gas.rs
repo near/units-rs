@@ -1,8 +1,8 @@
 use regex::Regex;
 use std::num::ParseIntError;
 
-pub fn parse_str(from: &str) -> Option<String> {
-    let gas = Regex::new(r"(?:gas)\s*")
+fn parse_str(from: &str) -> Option<String> {
+    let gas = Regex::new(r"(?i:gas)\s*")
         .unwrap()
         .replace_all(from, "")
         .to_string();

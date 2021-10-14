@@ -27,7 +27,7 @@ pub static MAGNITUDES: [i8; 20] = [
     24, 21, 18, 15, 12, 9, 6, 3, 2, 1, -1, -2, -3, -6, -9, -12, -15, -18, -21, -24,
 ];
 
-pub fn from_magnitude(magnitude: i8) -> Option<&'static str> {
+pub const fn from_magnitude(magnitude: i8) -> Option<&'static str> {
     match magnitude {
         24 => Some("Y"),
         21 => Some("Z"),
