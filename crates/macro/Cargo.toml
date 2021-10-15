@@ -1,6 +1,6 @@
 [package]
 name = "near-units-macro"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Willem Wyndham <wyndham@cs.unc.edu>"]
 edition = "2018"
 license = "GPL-3.0"
@@ -20,4 +20,4 @@ proc-macro2 = "1.0"
 syn = {version = "1", features = ["full", "fold", "extra-traits"] }
 quote = "1.0"
 
-near-units-core = { path = "../core", version = "0.1.0" }
+near-units-core = { path = "../core", version = "0.2.0" }
